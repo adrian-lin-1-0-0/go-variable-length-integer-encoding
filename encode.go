@@ -61,5 +61,5 @@ func ToUint64(b []byte) (uint64, uint8) {
 	length := 1 << (b[0] >> 6)
 	b[0] = b[0] & 0x3f
 	header := make([]byte, 8-length)
-	return binary.BigEndian.Uint64(append(header, b...)), uint8(length)
+	return binary.BigEndian.Uint64(append(header, b[:length]...)), uint8(length)
 }
